@@ -15,7 +15,7 @@ The lunch time is defined as a recurrent [Time Region Item](https://docs.devexpr
 </dxsch:SchedulerControl.TimeRegionItems>
 ```
 
-The validation logic is implemented in the **SchedulerValidationService** class which is a [DialogService](https://docs.devexpress.com/WPF/17467/mvvm-framework/services/predefined-set/dialog-services/dialogservice) class descendant. If an appointment intersects the lunch time, the Scheduler displays a dialog window and allows the user to cancel changes either in all appointments or only in the conflicted appointments. Users can also click the **Ignore** button to override validation and save changes:
+The validation logic is implemented in the **SchedulerValidationService** class which is a [DialogService](https://docs.devexpress.com/WPF/17467/mvvm-framework/services/predefined-set/dialog-services/dialogservice) class descendant. If an appointment intersects the lunch time, the service displays a dialog window and allows the user to cancel changes either in all appointments or only in the conflicted appointments. Users can also click the **Ignore** button to override validation and save changes:
 
 
 ```cs
