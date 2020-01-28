@@ -1,8 +1,8 @@
-# How to validate appointment items on adding or editing them in SchedulerControl
+# How to validate appointment items when the user is adding or editing them
 
-SchedulerControl provides the [AppointmentAdding](https://docs.devexpress.com/WPF/DevExpress.Xpf.Scheduling.SchedulerControl.AppointmentAdding) and [AppointmentEditing](https://docs.devexpress.com/WPF/DevExpress.Xpf.Scheduling.SchedulerControl.AppointmentEditing) events. You can use them to validate changes in corresponding appointment items. This example illustrates how you can show a warning message to end users if an appointment(-s) that is being edited or added intersects the lunch time.
+SchedulerControl provides the [AppointmentAdding](https://docs.devexpress.com/WPF/DevExpress.Xpf.Scheduling.SchedulerControl.AppointmentAdding) and [AppointmentEditing](https://docs.devexpress.com/WPF/DevExpress.Xpf.Scheduling.SchedulerControl.AppointmentEditing) events. You can use them to implement validation. This example illustrates how you can show a warning message to users when an appointment intersects the lunch time.
 
-The lunch time is defined as a corresponding recurrent [Time Region Item](https://docs.devexpress.com/WPF/401378/Controls-and-Libraries/Scheduler/Time-Regions):
+The lunch time is defined as a recurrent [Time Region Item](https://docs.devexpress.com/WPF/401378/Controls-and-Libraries/Scheduler/Time-Regions):
 
 ```xaml
 <dxsch:SchedulerControl.TimeRegionItems>
@@ -15,7 +15,7 @@ The lunch time is defined as a corresponding recurrent [Time Region Item](https:
 </dxsch:SchedulerControl.TimeRegionItems>
 ```
 
-The validation logic is implemented in the **SchedulerValidationService** class - a [DialogService](https://docs.devexpress.com/WPF/17467/mvvm-framework/services/predefined-set/dialog-services/dialogservice) class descendant. If a certain appointment(-s) intersects the lunch time, this descendant displays a dialog window and allows an end user to cancel changes either in all appointments or only in the problematic appointments. It's also possible to click the **Ignore** button and changes in these appointments will be saved:
+The validation logic is implemented in the **SchedulerValidationService** class which is a [DialogService](https://docs.devexpress.com/WPF/17467/mvvm-framework/services/predefined-set/dialog-services/dialogservice) class descendant. If an appointment intersects the lunch time, the Scheduler displays a dialog window and allows the user to cancel changes either in all appointments or only in the conflicted appointments. Users can also click the **Ignore** button to override validation and save changes:
 
 
 ```cs
@@ -54,7 +54,7 @@ bool ProcessAppointments(IReadOnlyList<AppointmentItem> appts, IList<Appointment
 }
 ```
 
-When the **ProcessAppointments** method returns **False**, the **e.Cancel** property is set to True in the **AppointmentAdding** or **AppointmentEditing** event handlers. If only changes in the problematic appointments should be canceled, these appointments are added to the [e.CanceledAppointments](https://docs.devexpress.com/WPF/DevExpress.Xpf.Scheduling.AppointmentAddingEventArgs.CanceledAppointments) or [e.CanceledEditAppointments](https://docs.devexpress.com/WPF/DevExpress.Xpf.Scheduling.AppointmentEditingEventArgs.CanceledEditAppointments) collections:
+When the **ProcessAppointments** method returns **False**, the **e.Cancel** property is set to **True** in the **AppointmentAdding** or **AppointmentEditing** event handlers. If the user chooses to cancel changes only for the conflicted appointments, these appointments are added to the [e.CanceledAppointments](https://docs.devexpress.com/WPF/DevExpress.Xpf.Scheduling.AppointmentAddingEventArgs.CanceledAppointments) or [e.CanceledEditAppointments](https://docs.devexpress.com/WPF/DevExpress.Xpf.Scheduling.AppointmentEditingEventArgs.CanceledEditAppointments) collections:
 
 ```cs
 private void Scheduler_AppointmentAdding(object sender, AppointmentAddingEventArgs e)
