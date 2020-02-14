@@ -69,9 +69,8 @@
             </dxmvvm:Interaction.Behaviors>
             <dxsch:SchedulerControl.TimeRegionItems>
                 <dxsch:TimeRegionItem BrushName="{x:Static dxsch:DefaultBrushNames.TimeRegion3Hatch}"
-                                      End="1/1/2019 14:00:00"
+                                      Start="1/1/2019 13:00:00" End="1/1/2019 14:00:00" 
                                       RecurrenceInfo="{dxsch:RecurrenceDaily Start='1/1/2019 13:00:00', ByDay=WorkDays}"
-                                      Start="1/1/2019 13:00:00"
                                       Type ="Pattern" />
             </dxsch:SchedulerControl.TimeRegionItems>
             <dxsch:SchedulerControl.DataSource>
