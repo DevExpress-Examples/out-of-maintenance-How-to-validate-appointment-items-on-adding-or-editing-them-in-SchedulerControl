@@ -1,3 +1,8 @@
+<!-- default badges list -->
+![](https://img.shields.io/endpoint?url=https://codecentral.devexpress.com/api/v1/VersionRange/236734186/19.2.3%2B)
+[![](https://img.shields.io/badge/Open_in_DevExpress_Support_Center-FF7200?style=flat-square&logo=DevExpress&logoColor=white)](https://supportcenter.devexpress.com/ticket/details/T857119)
+[![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
+<!-- default badges end -->
 # How to validate appointment items when the user is adding or editing them
 
 SchedulerControl provides the [AppointmentAdding](https://docs.devexpress.com/WPF/DevExpress.Xpf.Scheduling.SchedulerControl.AppointmentAdding) and [AppointmentEditing](https://docs.devexpress.com/WPF/DevExpress.Xpf.Scheduling.SchedulerControl.AppointmentEditing) events. You can use them to implement validation. This example illustrates how you can show a warning message to users when an appointment intersects the lunch time.
